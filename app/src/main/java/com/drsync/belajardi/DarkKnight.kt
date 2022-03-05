@@ -2,8 +2,8 @@ package com.drsync.belajardi
 
 import javax.inject.Inject
 
-class DarkKnight @Inject constructor() {
+class DarkKnight @Inject constructor(val senjata: Senjata) {
     fun setEquip(): String {
-        return "Kelompok DarkKnigh Bertempur menggunakan Tombak"
+        return "Kelompok DarkKnight Bertempur menggunakan ${senjata.tombak()}"
     }
 }

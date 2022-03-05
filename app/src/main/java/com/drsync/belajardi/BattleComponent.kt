@@ -1,9 +1,8 @@
 package com.drsync.belajardi
 
-import android.content.Context
 import dagger.Component
 
-@Component
+@Component(modules = [BattleModule::class])
 interface BattleComponent {
-    fun inject(context: MainActivity)
+    fun inject(context: MainActivity?)
 }
