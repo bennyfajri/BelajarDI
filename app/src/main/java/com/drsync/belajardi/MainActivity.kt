@@ -1,18 +1,14 @@
 package com.drsync.belajardi
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.drsync.belajardi.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var darkKnight: DarkKnight
-
-    @Inject
-    lateinit var lightKnight: LightKnight
+    private val viewModel: MainViewModel by viewModels()
 
     lateinit var binding: ActivityMainBinding
 
@@ -22,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.button.setOnClickListener {
-            val getReport = "${lightKnight.setEquip()} dan ${darkKnight.setEquip()}"
+            val getReport = "${viewModel.lightWeapon()} dan ${viewModel.darkWeapon()}"
             binding.textView.text = getReport
         }
     }
