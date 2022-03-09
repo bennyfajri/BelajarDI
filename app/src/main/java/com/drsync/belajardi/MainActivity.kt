@@ -1,27 +1,24 @@
 package com.drsync.belajardi
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.drsync.belajardi.databinding.ActivityMainBinding
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val viewModel: MainViewModel by viewModels()
 
     lateinit var binding: ActivityMainBinding
-    @Inject
-    lateinit var darkKnight: DarkKnight
-    @Inject
-    lateinit var lightKnight: LightKnight
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        DaggerBattleComponent.create().inject(this)
-
         binding.button.setOnClickListener {
-            val getReport = "${lightKnight.setEquip()} dan ${darkKnight.setEquip()}"
+            val getReport = "${viewModel.lightWeapon()} dan ${viewModel.darkWeapon()}"
             binding.textView.text = getReport
         }
     }

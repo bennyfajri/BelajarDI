@@ -1,21 +1,28 @@
 package com.drsync.belajardi
 
-import com.drsync.belajardi.Constant.Companion.UTAMA
 import com.drsync.belajardi.Constant.Companion.CADANGAN
+import com.drsync.belajardi.Constant.Companion.UTAMA
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
-class BattleModule {
+@InstallIn(SingletonComponent::class)
+object BattleModule {
+    @Singleton
     @Provides
-    @Choose(UTAMA)
-    fun setSenjata(): Senjata {
+    @Named(UTAMA)
+    fun provideSenjata(): Senjata {
         return Senjata("Pedang Lava", "Tombak Halilintar")
     }
 
+    @Singleton
     @Provides
-    @Choose(CADANGAN)
-    fun setSenjataCadangan(): Senjata {
+    @Named(CADANGAN)
+    fun provideSenjataCadangan(): Senjata {
         return Senjata("Pedang Naga", "Tombak Golem")
     }
 }
