@@ -3,18 +3,13 @@ package com.drsync.belajardi
 import com.drsync.belajardi.Constant.Companion.CADANGAN
 import com.drsync.belajardi.Constant.Companion.UTAMA
 import javax.inject.Inject
+import javax.inject.Named
 
-class LightKnight @Inject constructor() {
-
-    @Inject
-    @field:Choose(UTAMA)
-    lateinit var senjataUtama: Senjata
-
-    @Inject
-    @field:Choose(CADANGAN)
-    lateinit var senjataCadangan: Senjata
-
+class LightKnight @Inject constructor(
+    @Named(UTAMA) private val senjataUtama: Senjata,
+    @Named(CADANGAN) private val senjataCadangan: Senjata
+){
     fun setEquip(): String {
-        return "Kelompok LightKnight Bertempur Menggunakan ${senjataUtama.pedang()} dan ${senjataCadangan.pedang()}"
+        return "Kelompok LightKnight Bertempur Menggunakan ${senjataUtama.pedang()} dan ${senjataCadangan.pedang()} "
     }
 }
